@@ -99,7 +99,7 @@ export const ApplicationDetailWorkspace: React.FC = () => {
   };
 
   return (
-    <div className="p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
+    <div className="p-3.5 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 max-w-7xl mx-auto">
       {/* Back and Breadcrumb */}
       <div className="flex items-center justify-between">
         <button
@@ -117,7 +117,7 @@ export const ApplicationDetailWorkspace: React.FC = () => {
       </div>
 
       {/* Application Master Header Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-2xs">
+      <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-2xs">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2.5 flex-wrap">

@@ -53,6 +53,8 @@ interface AppContextValue {
   setSearchQuery: (q: string) => void;
   isCopilotOpen: boolean;
   setIsCopilotOpen: (open: boolean) => void;
+  isMobileMenuOpen: boolean;
+  setIsMobileMenuOpen: (open: boolean) => void;
   copilotMessages: CopilotMessage[];
   scenarioStep: number;
   setScenarioStep: (step: number) => void;
@@ -86,6 +88,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>(INITIAL_AUDIT_LOGS);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isCopilotOpen, setIsCopilotOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [scenarioStep, setScenarioStep] = useState<number>(0);
   const [isTourActive, setIsTourActive] = useState<boolean>(false);
 
@@ -530,6 +533,8 @@ Deterministic checks are verified first. Would you like to inspect document disc
         setSearchQuery,
         isCopilotOpen,
         setIsCopilotOpen,
+        isMobileMenuOpen,
+        setIsMobileMenuOpen,
         copilotMessages,
         scenarioStep,
         setScenarioStep,

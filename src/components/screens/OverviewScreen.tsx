@@ -9,11 +9,7 @@ import {
   ArrowRight, 
   Shield, 
   Info, 
-  ArrowUp, 
-  ArrowDown, 
-  Minus,
-  FileWarning,
-  AlertCircle
+  FileWarning
 } from 'lucide-react';
 import { 
   BarChart, 
@@ -169,52 +165,52 @@ export const OverviewScreen: React.FC = () => {
   ];
 
   return (
-    <div className="p-6 space-y-6 max-w-[1400px] mx-auto bg-[#f8fafc] text-slate-800">
-      {/* Page Title Bar - Exact match to image */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className="p-3.5 sm:p-6 space-y-5 sm:space-y-6 max-w-[1400px] mx-auto bg-[#f8fafc] text-slate-800">
+      {/* Page Title Bar - Mobile Friendly Flex */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight">
             Regulatory Operations Overview
           </h1>
-          <p className="text-xs sm:text-[13px] text-slate-500 mt-1">
+          <p className="text-xs sm:text-[13px] text-slate-500 mt-0.5 sm:mt-1 leading-relaxed">
             Monitor approval workflows, regulatory pendency, and institutional compliance from one intelligent workspace.
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#eff6ff] border border-blue-200/80 rounded-md text-[12px] text-slate-700 font-medium">
-            <Shield className="w-3.5 h-3.5 text-blue-600" />
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 bg-[#eff6ff] border border-blue-200/80 rounded-md text-[11px] sm:text-[12px] text-slate-700 font-medium">
+            <Shield className="w-3.5 h-3.5 text-blue-600 shrink-0" />
             <span>SIH 2026 Prototype • Demo Environment</span>
           </div>
         </div>
       </div>
 
-      {/* Row 1: 6 KPI Cards with left colored borders */}
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+      {/* Row 1: 6 KPI Cards with left colored borders - 2 cols on mobile, 3 on md, 6 on xl */}
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2.5 sm:gap-4">
         {kpis.map((kpi, idx) => {
           const Icon = kpi.icon;
           return (
             <div
               key={idx}
               onClick={() => setCurrentScreen(kpi.route as any)}
-              className={`bg-white rounded-xl border border-slate-200/80 ${kpi.borderColor} border-l-[3.5px] p-4 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-between cursor-pointer`}
+              className={`bg-white rounded-xl border border-slate-200/80 ${kpi.borderColor} border-l-[3.5px] p-3 sm:p-4 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-between cursor-pointer`}
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[12px] font-medium text-slate-600">
+              <div className="flex items-center justify-between gap-1">
+                <span className="text-[11px] sm:text-[12px] font-medium text-slate-600 line-clamp-1">
                   {kpi.title}
                 </span>
-                <div className={`w-7 h-7 rounded-lg ${kpi.iconBg} flex items-center justify-center shrink-0`}>
-                  <Icon className={`w-4 h-4 ${kpi.iconColor}`} />
+                <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg ${kpi.iconBg} flex items-center justify-center shrink-0`}>
+                  <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${kpi.iconColor}`} />
                 </div>
               </div>
 
-              <div className="mt-3">
-                <div className="text-2xl font-extrabold text-slate-900 tracking-tight font-sans">
+              <div className="mt-2 sm:mt-3">
+                <div className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight font-sans">
                   {kpi.value}
                 </div>
-                <div className="mt-2 text-[11px] text-slate-400 flex items-center justify-between group">
+                <div className="mt-1.5 sm:mt-2 text-[10px] sm:text-[11px] text-slate-400 flex items-center justify-between group">
                   <span className="truncate">{kpi.sub}</span>
-                  <span className="text-slate-400 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                  <span className="text-slate-400 group-hover:translate-x-0.5 transition-transform shrink-0 ml-1">&rarr;</span>
                 </div>
               </div>
             </div>
@@ -222,15 +218,15 @@ export const OverviewScreen: React.FC = () => {
         })}
       </div>
 
-      {/* Row 2: Middle Row 1 (3 Cards) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Row 2: Middle Row 1 (3 Cards) - 1 col on mobile, 3 cols on lg */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Card 1: Application Pendency by Stage (Bar Chart) */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs">
-          <h2 className="text-[14px] font-bold text-slate-900 mb-4">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+          <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900 mb-3 sm:mb-4">
             Application Pendency by Stage
           </h2>
 
-          <div className="h-56 w-full">
+          <div className="h-48 sm:h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={pendencyData} margin={{ top: 20, right: 10, left: -25, bottom: 0 }}>
                 <XAxis dataKey="stage" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
@@ -254,19 +250,19 @@ export const OverviewScreen: React.FC = () => {
         </div>
 
         {/* Card 2: Approval Workflow Distribution (Donut Chart) */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs">
-          <h2 className="text-[14px] font-bold text-slate-900 mb-2">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+          <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900 mb-2">
             Approval Workflow Distribution
           </h2>
 
-          <div className="flex items-center justify-between h-56">
-            <div className="w-1/2 h-full relative flex items-center justify-center">
+          <div className="flex flex-col xs:flex-row items-center justify-between min-h-[200px] sm:h-56 gap-3">
+            <div className="w-full xs:w-1/2 h-44 sm:h-full relative flex items-center justify-center">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={approvalDistribution}
-                    innerRadius={48}
-                    outerRadius={68}
+                    innerRadius={46}
+                    outerRadius={66}
                     paddingAngle={2}
                     dataKey="value"
                   >
@@ -287,7 +283,7 @@ export const OverviewScreen: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-1/2 space-y-1.5 pl-2 text-[11px]">
+            <div className="w-full xs:w-1/2 space-y-1.5 xs:pl-2 text-[11px]">
               {approvalDistribution.map((item, idx) => (
                 <div key={idx} className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5 truncate">
@@ -302,12 +298,12 @@ export const OverviewScreen: React.FC = () => {
         </div>
 
         {/* Card 3: Compliance Deadline Overview (Line Chart) */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[14px] font-bold text-slate-900">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900">
               Compliance Deadline Overview
             </h2>
-            <div className="flex items-center gap-3 text-[11px]">
+            <div className="flex items-center gap-2.5 text-[10px] sm:text-[11px]">
               <span className="flex items-center gap-1 text-slate-600">
                 <span className="w-2 h-2 rounded-full bg-[#f59e0b]" /> Due Soon
               </span>
@@ -317,7 +313,7 @@ export const OverviewScreen: React.FC = () => {
             </div>
           </div>
 
-          <div className="h-56 w-full">
+          <div className="h-48 sm:h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={complianceTimeline} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                 <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
@@ -334,21 +330,21 @@ export const OverviewScreen: React.FC = () => {
       </div>
 
       {/* Row 3: Middle Row 2 (3 Cards) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Card 1: EVC Scheduling Status */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs">
-          <h2 className="text-[14px] font-bold text-slate-900 mb-2">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+          <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900 mb-2">
             EVC Scheduling Status
           </h2>
 
-          <div className="flex items-center justify-between h-56">
-            <div className="w-1/2 h-full relative flex items-center justify-center">
+          <div className="flex flex-col xs:flex-row items-center justify-between min-h-[200px] sm:h-56 gap-3">
+            <div className="w-full xs:w-1/2 h-44 sm:h-full relative flex items-center justify-center">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={evcStatusData}
-                    innerRadius={48}
-                    outerRadius={68}
+                    innerRadius={46}
+                    outerRadius={66}
                     paddingAngle={2}
                     dataKey="value"
                   >
@@ -368,7 +364,7 @@ export const OverviewScreen: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-1/2 space-y-2 pl-2 text-[11px]">
+            <div className="w-full xs:w-1/2 space-y-2 xs:pl-2 text-[11px]">
               {evcStatusData.map((item, idx) => (
                 <div key={idx} className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
@@ -383,10 +379,10 @@ export const OverviewScreen: React.FC = () => {
         </div>
 
         {/* Card 2: Recent Application Activity */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs flex flex-col justify-between">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-[14px] font-bold text-slate-900">
+              <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900">
                 Recent Application Activity
               </h2>
               <button 
@@ -410,15 +406,15 @@ export const OverviewScreen: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 min-w-0 pr-2">
                     <span className={`w-2 h-2 rounded-full shrink-0 ${act.dotColor}`} />
-                    <span className="font-mono text-[11px] text-slate-500 shrink-0">{act.id}</span>
+                    <span className="font-mono text-[10px] sm:text-[11px] text-slate-500 shrink-0">{act.id}</span>
                     <span className="font-medium text-slate-800 truncate text-[11px]">{act.name}</span>
                   </div>
 
-                  <div className="flex items-center gap-2 shrink-0">
-                    <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${act.statusColor}`}>
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                    <span className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-md font-medium ${act.statusColor}`}>
                       {act.status}
                     </span>
-                    <span className="text-[10px] text-slate-400 font-mono w-10 text-right">{act.time}</span>
+                    <span className="text-[10px] text-slate-400 font-mono text-right">{act.time}</span>
                   </div>
                 </div>
               ))}
@@ -427,10 +423,10 @@ export const OverviewScreen: React.FC = () => {
         </div>
 
         {/* Card 3: Critical Alerts */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs flex flex-col justify-between">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-[14px] font-bold text-slate-900">
+              <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900">
                 Critical Alerts
               </h2>
               <button 
@@ -459,11 +455,11 @@ export const OverviewScreen: React.FC = () => {
                       <span className="text-slate-800 truncate text-[11px] font-medium">{alert.text}</span>
                     </div>
 
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-md font-semibold ${alert.severityColor}`}>
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                      <span className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-md font-semibold ${alert.severityColor}`}>
                         {alert.severity}
                       </span>
-                      <span className="text-[10px] text-slate-400 font-mono w-10 text-right">{alert.time}</span>
+                      <span className="text-[10px] text-slate-400 font-mono text-right">{alert.time}</span>
                     </div>
                   </div>
                 );
@@ -474,15 +470,15 @@ export const OverviewScreen: React.FC = () => {
       </div>
 
       {/* Row 4: Bottom Row (3 Cards) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Card 1: Bottleneck Detection Table */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs">
-          <h2 className="text-[14px] font-bold text-slate-900 mb-3">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs">
+          <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900 mb-3">
             Bottleneck Detection
           </h2>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
+          <div className="overflow-x-auto -mx-1 sm:mx-0">
+            <table className="w-full text-left text-xs min-w-[280px]">
               <thead className="text-[11px] text-slate-400 border-b border-slate-100">
                 <tr>
                   <th className="pb-2 font-medium">Stage</th>
@@ -513,10 +509,10 @@ export const OverviewScreen: React.FC = () => {
         </div>
 
         {/* Card 2: Recommended Next Actions */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs flex flex-col justify-between">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-[14px] font-bold text-slate-900">
+              <h2 className="text-[13px] sm:text-[14px] font-bold text-slate-900">
                 Recommended Next Actions
               </h2>
               <button 
@@ -559,7 +555,7 @@ export const OverviewScreen: React.FC = () => {
         </div>
 
         {/* Card 3: Government Tech / National Emblem Card & Disclaimer */}
-        <div className="bg-white rounded-xl border border-slate-200/80 p-5 shadow-2xs flex flex-col justify-between">
+        <div className="bg-white rounded-xl border border-slate-200/80 p-4 sm:p-5 shadow-2xs flex flex-col justify-between">
           <div className="space-y-3">
             <div className="flex items-start gap-3">
               {/* Ashoka Lion Capital SVG Representation */}
@@ -586,14 +582,14 @@ export const OverviewScreen: React.FC = () => {
             </p>
 
             <div>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f0f4f9] border border-slate-200 rounded-md text-[11px] text-slate-600 font-medium">
-                <Shield className="w-3 h-3 text-slate-500" />
-                <span>SIH 2026 Prototype • Not an official government service</span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#f0f4f9] border border-slate-200 rounded-md text-[10px] sm:text-[11px] text-slate-600 font-medium">
+                <Shield className="w-3 h-3 text-slate-500 shrink-0" />
+                <span className="truncate">SIH 2026 Prototype • Not an official government service</span>
               </span>
             </div>
           </div>
 
-          <div className="mt-4 p-2 bg-[#f0f7ff] border border-blue-100 rounded-lg flex items-center gap-2 text-[11px] text-[#2563eb]">
+          <div className="mt-3.5 p-2 bg-[#f0f7ff] border border-blue-100 rounded-lg flex items-center gap-2 text-[10px] sm:text-[11px] text-[#2563eb]">
             <Info className="w-3.5 h-3.5 shrink-0" />
             <span>All data shown is fictional and for demonstration purposes only.</span>
           </div>

@@ -5,9 +5,9 @@ import {
   Sparkles, 
   Shield, 
   ChevronDown, 
-  UserCheck, 
   CheckCircle2,
-  User
+  User,
+  Menu
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { Role } from '../../types';
@@ -18,9 +18,9 @@ export const Navbar: React.FC = () => {
     setCurrentRole, 
     searchQuery, 
     setSearchQuery, 
-    alerts, 
     setCurrentScreen, 
-    setIsCopilotOpen 
+    setIsCopilotOpen,
+    setIsMobileMenuOpen 
   } = useApp();
 
   const roles: Role[] = [
@@ -32,60 +32,70 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between gap-4 shrink-0">
-      {/* Left: SIH 2026 Prototype Pill Badge from image */}
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-1.5 px-3 py-1 bg-[#f0f4f9] border border-slate-200 rounded-md text-[12px] text-slate-700 font-medium">
-          <Shield className="w-3.5 h-3.5 text-slate-500" />
-          <span>SIH 2026 Prototype • Demo Environment</span>
+    <header className="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between gap-3 shrink-0">
+      {/* Left: Hamburger menu on Mobile + SIH 2026 Prototype Pill */}
+      <div className="flex items-center gap-2.5">
+        {/* Mobile Hamburger Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="p-2 -ml-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg lg:hidden transition-colors"
+          title="Open Menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
+        {/* SIH 2026 Prototype Pill Badge */}
+        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 bg-[#f0f4f9] border border-slate-200 rounded-md text-[12px] text-slate-700 font-medium">
+          <Shield className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+          <span className="truncate">SIH 2026 Prototype • Demo Environment</span>
         </div>
       </div>
 
-      {/* Center: Search input exact placeholder */}
-      <div className="flex-1 max-w-xl mx-4">
+      {/* Center: Search input */}
+      <div className="flex-1 max-w-xl mx-2 sm:mx-4">
         <div className="relative w-full">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search applications, institutions, or IDs..."
-            className="w-full pl-10 pr-4 py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-2xs"
+            placeholder="Search applications, IDs..."
+            className="w-full pl-9 pr-3 py-1.5 sm:py-2 text-xs bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-2xs"
           />
         </div>
       </div>
 
-      {/* Right Side: Copilot, Bell Icon, User Profile */}
-      <div className="flex items-center gap-3">
+      {/* Right Side: Copilot, Bell, User Profile */}
+      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
         {/* ZeroLoop Copilot Pill */}
         <button
           onClick={() => setIsCopilotOpen(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-2xs hover:shadow-xs transition-all cursor-pointer"
+          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-2xs hover:shadow-xs transition-all cursor-pointer"
           title="Open ZeroLoop Copilot AI Assistant"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
-          <span>Copilot</span>
+          <span className="hidden xs:inline">Copilot</span>
         </button>
 
         {/* Bell with red notification badge '3' */}
         <button
           onClick={() => setCurrentScreen('alerts')}
-          className="relative p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer"
+          className="relative p-1.5 sm:p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer"
           title="Notifications"
         >
           <Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-4 h-4 flex items-center justify-center bg-rose-500 text-white text-[9px] font-bold rounded-full">
+          <span className="absolute top-1 right-1 w-4 h-4 flex items-center justify-center bg-rose-500 text-white text-[9px] font-bold rounded-full">
             3
           </span>
         </button>
 
         {/* User Profile & Role Switcher */}
-        <div className="relative group pl-2 border-l border-slate-200">
-          <div className="flex items-center gap-2.5 cursor-pointer">
+        <div className="relative group pl-1.5 sm:pl-2 border-l border-slate-200">
+          <div className="flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0 overflow-hidden">
               <User className="w-4 h-4 text-slate-600" />
             </div>
-            <div className="text-left hidden sm:block">
+            <div className="text-left hidden md:block">
               <div className="text-xs font-bold text-slate-900 leading-tight">
                 Rahul Sharma
               </div>
